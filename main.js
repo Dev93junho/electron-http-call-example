@@ -14,8 +14,8 @@ let icounter = 0;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     title: "Just a little tutorial",
     icon: "assets/logo.png",
     webPreferences: {
@@ -25,7 +25,6 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.setMenu(null);
   mainWindow.loadFile("./views/home/index.html");
 
   let wc = mainWindow.webContents;
@@ -64,37 +63,9 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-ipcMain.handle("doSomethingFetch", async () => {
-  const response = await axios.get("http://www.boredapi.com/api/activity/");
-  return response;
-});
-
-ipcMain.handle("doSomethingGot", async () => {
-  const response = await got.get("http://www.boredapi.com/api/activity/");
-  console.log(response);
-  return response;
-});
-
 ipcMain.handle("doSomethingAxios", async () => {
-  const response = await fetch("http://www.boredapi.com/api/activity/");
+  const response = await fetch("http://ad05-35-196-154-162.ngrok.io/");
   const body = await response.text();
+  console.log(body)
   return body;
-});
-
-ipcMain.handle("doSomething", () => {
-  const request = net.request("https://www.boredapi.com/api/activity/");
-  request.on("response", (response) => {
-    const data = [];
-    response.on("data", (chunk) => {
-      data.push(chunk);
-      console.log(chunk);
-    });
-    response.on("end", () => {
-      const json = Buffer.concat(data).toString();
-      console.log(json);
-      mainWindow.webContents.send("gotData", json);
-    });
-  });
-
-  request.end();
 });
