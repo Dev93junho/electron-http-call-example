@@ -48,25 +48,22 @@
     </div>
     <!-- sidebar -->
     <nav class="sidebar">
-      sidebar menu
-      <h1 class="title">
-        Calling an API from Electron
-      </h1>
-      <div class="block">
-        <p>
-          How to make a rest request from Electron and consume an API<br />
-        </p>
-      </div>
+
       <div id="change">
-        <button class="btn" id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
+        <button id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
       </div>
       <div id="whattodo">
       </div>
-    <!-- get description, send description using button and enter -->
-    <div>
-      <input type="text" id="description" placeholder="Enter description">
-      <button id="send" onclick="sendDescription();">Send</button>
-    </div>
+
+        <!-- get description, send description using button and enter, get image if enter the button -->
+      <div>
+        <input type="text" id="description" placeholder="Enter description">
+        <button id="send" onclick="sendDescription();">Send</button>
+        <div>
+          <!-- rendering image from external server-->
+          <img id="image" src="https://source.unsplash.com/random/80x60" alt="random image"> 
+        </div>
+      </div>
     </nav>
   </div>
 
@@ -94,6 +91,7 @@
   <script src="../../assets/editor.js"></script>
   <script defer src="../../viewscripts/home/index.js"></script>
   <script src="../../assets/sidebar.js"></script>
+
   <!-- send description to external api -->
   <script>
     function sendDescription() {
@@ -102,6 +100,21 @@
       xhr.open("POST", "http://1d81-35-231-123-15.ngrok.io/getItem", true); // please change the port number if you are using a different port
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({ description: description }));
+    }
+  </script>
+
+  <!-- get image from external server -->
+  <script>
+    function getImage() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://1d81-35-231-123-15.ngrok.io/getItem", true); // please change the port number if you are using a different port
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send();
+      xhr.onload = function () {
+        var data = JSON.parse(this.response);
+        document.getElementById("whattodo").innerHTML = data.description;
+        document.getElementById("image").src = data.image;
+      }
     }
   </script>
 </body>
