@@ -18,11 +18,13 @@ let indexBridge = {
     
     console.log("1");
     var result = await ipcRenderer.invoke("doSomethingFetch");
-
-    // makeTable(result[0]);
+    result = JSON.parse(result[0]);
+    console.log(result);
+    resultTable = makeTable(result);
+    console.log(resultTable);
     // makeStr(result[1]);
     var whattodo = document.getElementById("whattodo");
-    whattodo.innerText = JSON.parse(result);
+    whattodo.innerHTML = resultTable;
   }
 }
 
@@ -31,23 +33,16 @@ ipcRenderer.on("gotData", (event, json) => {
   console.log("2");
   var whattodo = document.getElementById("whattodo");
   whattodo.innerText = JSON.parse(json);
+
 })
 
 contextBridge.exposeInMainWorld("indexBridge", indexBridge);
 
 function makeTable(data) {
   let v = data;
-  v = v.replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r")
-    .replace(/\t/g, "\\t")
-    .replace(/&#34;/g, "\"")
-    .replace(/&#39;/g, "\'")
-    .replace(/&gt;/g, "\>")
-    .replace(/&lt;/g, "\<");
-  //console.log(v);
+  console.log(v);
 
   try {
-    v = JSON.parse(v);
 
     for (i in v) {
       let len = v[i].length;
@@ -74,11 +69,10 @@ function makeTable(data) {
       // close table
       let tableFooter = "</table>";
 
-      document.getElementById("table").innerHTML = tableHeader + tableContent + tableFooter;
+      return (tableHeader + tableContent + tableFooter);
     }
   }
   catch (error) {
-    let parent = document.querySelector('#table');
     let fragment = document.createDocumentFragment();
     let p = document.createElement('p');
     p.textContent = "fail to scrap";
