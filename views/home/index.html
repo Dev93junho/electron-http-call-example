@@ -1,70 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!-- <meta
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <!-- <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"
     /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../styles/main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    <!-- Insert this line above script imports  -->
-    <script>
-      if (typeof module === 'object') {
-        window.module = module
-        module = undefined
-      }
-    </script>
+  <!-- Insert this line above script imports  -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module
+      module = undefined
+    }
+  </script>
 
-    <!-- normal script imports etc  -->
-    <script src="../../viewscripts/lib/jquery.3.6.0.js"></script>
+  <!-- normal script imports etc  -->
+  <script src="../../viewscripts/lib/jquery.3.6.0.js"></script>
 
-    <!-- Insert this line after script imports -->
-    <script>
-      if (window.module) module = window.module
-    </script>
-  </head>
+  <!-- Insert this line after script imports -->
+  <script>
+    if (window.module) module = window.module
+  </script>
+</head>
 
-  <body>
-    <section class="section">
-      <div class="container">
-        <div id="editorjs"></div>
-        <h1 class="title">
-          Calling an API from Electron
-        </h1>
-        <div class="block">
-          <p>
-            How to make a rest request from Electron and consume an API<br />
-          </p>
-        </div>
-        <div id="change">
-          <button id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
-        </div>
-        <div id="whattodo">
-        </div>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">FREEDOCS</a>
       </div>
-    </section>
+      <div class="d-flex">
+        <button class="btn btn-primary me-sm-2" id="tgl" onclick="menu()"> <<< </button>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
-  
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+  <div class="section" id="home">
+    <div class="content">
+      <div id="editorjs"></div>
+    </div>
+    <!-- sidebar -->
+    <nav class="sidebar">
+      sidebar menu
+      <h1 class="title">
+        Calling an API from Electron
+      </h1>
+      <div class="block">
+        <p>
+          How to make a rest request from Electron and consume an API<br />
+        </p>
+      </div>
+      <div id="change">
+        <button id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
+      </div>
+      <div id="whattodo">
+      </div>
+    </nav>
+  </div>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="../../assets/editor.js"></script>
-    <script defer src="../../viewscripts/home/index.js"></script>
-  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+
+  <!-- You can also require other files to run in this process -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <script src="../../assets/editor.js"></script>
+  <script defer src="../../viewscripts/home/index.js"></script>
+  <script src="../../assets/sidebar.js"></script>
+
+</body>
+
 </html>

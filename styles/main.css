@@ -1,2 +1,57 @@
 @import "../node_modules/bulma/css/bulma.css";
 
+html, body {margin: 0; padding: 0}
+
+body {
+    background-color: rgb(163, 163, 163);
+    overflow-x: hidden;
+}
+
+#home {
+    height: fit-content;
+}
+
+.container-fluid {
+    width: 100%;
+}
+
+.section {
+    margin-top: 52px;
+}
+
+.navbar > .container-fluid {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar {
+    position: fixed;
+    background-color:rgb(163, 163, 163);
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    margin-top: 52px;
+    transition: transform 0.2s;
+}
+.content {
+    padding-right: 0px;
+    min-height: 100vh;
+    background-color:rgb(255, 255, 255);
+    transition: padding-right 0.2s;
+}
+ 
+#tgl {
+    display: flex;
+    margin-left: auto;
+}
+
+.menu-opened > .sidebar {
+    transform: translateX(-300px);
+}
+
+.menu-opened > .content {
+    padding-right: 300px;
+}

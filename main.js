@@ -2,15 +2,12 @@
 const { app, BrowserWindow, session } = require("electron");
 const path = require("path");
 const { ipcMain } = require("electron");
-const { net } = require("electron");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const axios = require("axios");
-const got = (...args) => import("got").then(({ default: got }) => got(...args));
 const { dialog } = require("electron");
 
 var mainWindow;
-let icounter = 0;
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -63,9 +60,10 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-ipcMain.handle("doSomethingAxios", async () => {
-  const response = await fetch("http://ad05-35-196-154-162.ngrok.io/");
-  const body = await response.text();
-  console.log(body)
+ipcMain.handle("doSomethingFetch", async () => {
+  url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
+  const response = await fetch("http://f899-34-125-103-31.ngrok.io/getItem?url="+url);
+  console.log("0");
+  const body = await response.json();
   return body;
 });
