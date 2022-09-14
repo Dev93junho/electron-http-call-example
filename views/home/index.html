@@ -32,6 +32,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
     <div class="container-fluid">
+      
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand" href="#">FREEDOCS</a>
@@ -39,29 +40,34 @@
       <div class="d-flex">
         <button class="btn btn-primary me-sm-2" id="tgl" onclick="menu()"> <<< </button>
       </div>
-    </div><!-- /.container-fluid -->
+
+      <!-- save button -->
+      <div class="d-flex">
+        <button class="btn btn-primary me-sm-2" id="save" onclick="save()"> Save </button>
+    </div>
+    
   </nav>
 
   <div class="section" id="home">
     <div class="content">
       <div id="editorjs"></div>
     </div>
+
     <!-- sidebar -->
     <nav class="sidebar">
-
       <div id="change">
         <button id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
       </div>
       <div id="whattodo">
       </div>
 
-        <!-- get description, send description using button and enter, get image if enter the button -->
+      <!-- send description -->
       <div>
         <input type="text" id="description" placeholder="Enter description">
         <button id="send" onclick="sendDescription();">Send</button>
         <div>
           <!-- rendering image from external server-->
-          <img id="image" src="https://source.unsplash.com/random/80x60" alt="random image"> 
+          <img id="image" src="https://source.unsplash.com/random/300x300" alt="descripted image"> 
         </div>
       </div>
     </nav>
@@ -117,6 +123,5 @@
       }
     }
   </script>
-</body>
-
+ </body>
 </html>

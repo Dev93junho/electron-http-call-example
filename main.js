@@ -27,16 +27,16 @@ function createWindow() {
   let wc = mainWindow.webContents;
   //wc.openDevTools()
 
-  wc.on("dom-ready", (e) => {
-    dialog.showMessageBox(
-      (options = {
-        message: "Hi! I got called from a WebContents Object",
-        title: "This is a message",
-      })
-    ).then((res) => {
-      console.log(res);
-    });
-  });
+  // wc.on("dom-ready", (e) => {
+  //   dialog.showMessageBox(
+  //     (options = {
+  //       message: "Hi! I got called from a WebContents Object",
+  //       title: "This is a message",
+  //     })
+  //   ).then((res) => {
+  //     console.log(res);
+  //   });
+  // });
 }
 
 // This method will be called when Electron has finished
@@ -44,6 +44,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
+  mainWindow.maximize();
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
@@ -60,9 +61,11 @@ app.on("window-all-closed", function () {
 });
 
 ipcMain.handle("doSomethingFetch", async () => {
+  // custom url load from index.html
+  
   url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
-  const response = await fetch("http://1d81-35-231-123-15.ngrok.io/getItem?url="+url);
+  const response = await fetch("http://f899-34-125-103-31.ngrok.io/getItem?url="+url);
   console.log("0");
-  var body = await response.json();
+  const body = await response.json();
   return body;
 });
