@@ -62,8 +62,15 @@
       </div>
       <div id="whattodo">
       </div>
+    <!-- get description, send description using button and enter -->
+    <div>
+      <input type="text" id="description" placeholder="Enter description">
+      <button id="send" onclick="sendDescription();">Send</button>
+    </div>
     </nav>
   </div>
+
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
@@ -87,7 +94,16 @@
   <script src="../../assets/editor.js"></script>
   <script defer src="../../viewscripts/home/index.js"></script>
   <script src="../../assets/sidebar.js"></script>
-
+  <!-- send description to external api -->
+  <script>
+    function sendDescription() {
+      var description = document.getElementById("description").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://1d81-35-231-123-15.ngrok.io/getItem", true); // please change the port number if you are using a different port
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({ description: description }));
+    }
+  </script>
 </body>
 
 </html>
