@@ -28,11 +28,6 @@ let indexBridge = {
     whattodo.appendChild(resultStr);
 
   },
-
-  getImg: async () => {
-    var result = await ipcRenderer.invoke("getImg");
-    console.log(result);
-  }
 }
 
 ipcRenderer.on("gotData", (event, json) => {

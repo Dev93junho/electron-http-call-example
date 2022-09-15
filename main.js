@@ -63,17 +63,7 @@ ipcMain.handle("getScrappy", async () => {
   // custom url load from index.html
   
   url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
-  const response = await fetch("http://ec71-35-201-163-193.ngrok.io/getItem?url="+url);
-  console.log("0");
-  const body = await response.json();
-  return body;
-});
-
-ipcMain.handle("getImg", async () => {
-  // custom url load from index.html
-  
-  url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
-  const response = await fetch("http://ec71-35-201-163-193.ngrok.io/getItem?url="+url);
+  const response = await fetch("http://ba0c-35-201-163-193.ngrok.io/getItem?url="+url);
   console.log("0");
   const body = await response.json();
   return body;
