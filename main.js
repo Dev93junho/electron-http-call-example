@@ -2,8 +2,7 @@
 const { app, BrowserWindow, session } = require("electron");
 const path = require("path");
 const { ipcMain } = require("electron");
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { dialog } = require("electron");
 
 var mainWindow;
@@ -23,7 +22,7 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadFile("./views/home/index.html");
 
-  let wc = mainWindow.webContents;
+  // let wc = mainWindow.webContents;
   //wc.openDevTools()
 
   // wc.on("dom-ready", (e) => {
@@ -62,7 +61,7 @@ ipcMain.handle("getScrappy", async () => {
   // custom url load from index.html
   
   url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
-  const response = await fetch("http://eec7-35-201-163-193.ngrok.io/getItem?url="+url);
+  const response = await fetch("http://a5d5-35-201-163-193.ngrok.io/getItem?url="+url);
   console.log("main scrp");
   const body = await response.json();
   return body;
@@ -72,7 +71,7 @@ ipcMain.handle("getImg", async () => {
   // custom url load from index.html
   
   description = "tree on the mountain"
-  const response = await fetch("http://eec7-35-201-163-193.ngrok.io/getImg?description="+description);
+  const response = await fetch("http://a5d5-35-201-163-193.ngrok.io/getImg?description="+description);
   console.log("main img");
   const body = await response.json();
   return body;
