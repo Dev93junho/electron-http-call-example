@@ -4,10 +4,7 @@
   "description": "FreeDocs",
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "watch": "nodemon --exec electron .",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
+    "start": "electron .",
     "build:osx": "electron-builder --mac",
     "build:linux": "npm run build:linux32 && npm run build:linux64",
     "build:linux32": "electron-builder --linux --ia32",
@@ -16,16 +13,14 @@
     "build:win32": "electron-builder --win portable --ia32",
     "build:win64": "electron-builder --win portable --x64"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nordap/Freedocs.git"
+  },
   "keywords": [],
   "author": "",
   "license": "CC0-1.0",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.57",
-    "@electron-forge/maker-deb": "^6.0.0-beta.57",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
-    "@electron-forge/maker-zip": "^6.0.0-beta.57",
     "electron": "^13.1.5",
     "electron-builder": "^22.11.7"
   },
@@ -40,28 +35,11 @@
   "config": {
     "forge": {
       "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron-start"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
+      "makers": []
     }
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/nordap/Freedocs/issues"
+  },
+  "homepage": "https://github.com/nordap/Freedocs#readme"
 }
