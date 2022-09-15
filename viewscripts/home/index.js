@@ -1,3 +1,7 @@
-function doSomething() {
-    window.indexBridge.doSomethingGot();
+function getScrappy() {
+    window.indexBridge.getScrappy();
+}
+
+function getImg() {
+    window.indexBridge.getImg();
 }

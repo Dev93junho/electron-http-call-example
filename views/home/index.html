@@ -34,16 +34,16 @@
     <div class="container-fluid">
       
       <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="d-flex flex-row">
+        <!-- save button -->
+        <button class="btn btn-primary me-sm-2" id="save" onclick="save()"> Save </button>
+      </div>
       <div class="navbar-header">
         <a class="navbar-brand" href="#">FREEDOCS</a>
       </div>
-      <div class="d-flex">
-        <button class="btn btn-primary me-sm-2" id="tgl" onclick="menu()"> <<< </button>
+      <div class="d-flex flex-row">
+        <button class="btn btn-primary me-sm-2" id="tgl" onclick="menu()"> <<< </button>  
       </div>
-
-      <!-- save button -->
-      <div class="d-flex">
-        <button class="btn btn-primary me-sm-2" id="save" onclick="save()"> Save </button>
     </div>
     
   </nav>
@@ -55,26 +55,35 @@
 
     <!-- sidebar -->
     <nav class="sidebar">
-      <div id="change">
-        <button id="callApi" onclick="doSomething();">I am bored. What should I do?</button>
-      </div>
-      <div id="whattodo">
-      </div>
+      <div class="tab">
+        <ul class="tabnav">
+          <li><a href="#tab01">탭1</a></li>
+          <li><a href="#tab02">탭2</a></li>
+        </ul>
+        <div class="tabcontent">
+          <div id="tab01">
+            <form id="change">
+              <input type="text" class="form-control" id="srcUrl" placeholder="type the url">
+              <button class="btn" id="callApi" onclick="getScrappy();">I am bored. What should I do?</button>
+            </form>
+            <div id="whattodo">
+            </div>
+          </div>
+          <div id="tab02">
+                  <!-- send description -->
+            <div id="imgMake">
+              <input type="text" id="description" placeholder="Enter description">
+              <button id="send" onclick="getImg();">Send</button>
+              <div>
+                <!-- rendering image from external server-->
+                <img id="image" src="https://source.unsplash.com/random/300x300" alt="descripted image"> 
+              </div>
+            </div>
+          </div>
 
-      <!-- send description -->
-      <div>
-        <input type="text" id="description" placeholder="Enter description">
-        <button id="send" onclick="sendDescription();">Send</button>
-        <div>
-          <!-- rendering image from external server-->
-          <img id="image" src="https://source.unsplash.com/random/300x300" alt="descripted image"> 
-        </div>
-      </div>
+
     </nav>
   </div>
-
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
@@ -92,11 +101,14 @@
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
 
   <!-- You can also require other files to run in this process -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
   <script src="../../assets/editor.js"></script>
   <script defer src="../../viewscripts/home/index.js"></script>
   <script src="../../assets/sidebar.js"></script>
+  <script src="../../assets/tab.js"></script>
+  
 
   <!-- send description to external api -->
   <script>

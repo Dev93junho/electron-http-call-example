@@ -30,11 +30,12 @@ body {
 
 .sidebar {
     position: fixed;
-    background-color:rgb(163, 163, 163);
+    overflow: auto;
+    background-color:rgb(209, 209, 209);
     top: 0;
     right: -305px;
     width: 300px;
-    height: 100%;
+    height: calc(100% - 52px);
     margin-top: 52px;
     transition: transform 0.2s;
     padding: 0.5em;
@@ -60,3 +61,15 @@ body {
 .menu-opened > .content {
     padding-right: 300px;
 }
+
+/*tab css*/
+.tab{float:left; width:100%; height:100%;}
+.tabnav{font-size:0; width:100%; border:1px solid #ddd;}
+.tabnav li{display: inline-block;  height:32px; text-align:center; border-right:1px solid #ddd;}
+.tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:3px; }
+.tabnav li a.active:before{background:#337ab7;}
+.tabnav li a.active{border-bottom:1px solid #fff;}
+.tabnav li a{ position:relative; display:block; background: #f8f8f8; color: #000; padding:0 30px; line-height:32px; text-decoration:none; font-size:16px;}
+.tabnav li a:hover,
+.tabnav li a.active{background:#fff; color:#337ab7; }
+.tabcontent{height:auto; border:1px solid #ddd; border-top:none;}

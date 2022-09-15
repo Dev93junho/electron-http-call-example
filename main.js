@@ -44,7 +44,6 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
-  mainWindow.maximize();
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
@@ -60,11 +59,21 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-ipcMain.handle("doSomethingFetch", async () => {
+ipcMain.handle("getScrappy", async () => {
   // custom url load from index.html
   
   url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
-  const response = await fetch("http://f899-34-125-103-31.ngrok.io/getItem?url="+url);
+  const response = await fetch("http://ec71-35-201-163-193.ngrok.io/getItem?url="+url);
+  console.log("0");
+  const body = await response.json();
+  return body;
+});
+
+ipcMain.handle("getImg", async () => {
+  // custom url load from index.html
+  
+  url = "https://www.lawmaking.go.kr/opnPtcp/nsmLmSts/out?pageIndex=1"
+  const response = await fetch("http://ec71-35-201-163-193.ngrok.io/getItem?url="+url);
   console.log("0");
   const body = await response.json();
   return body;

@@ -14,17 +14,24 @@ let indexBridge = {
   //     var whattodo = document.getElementById("whattodo");
   //     whattodo.innerText = JSON.parse(result).activity;
   // },
-  doSomethingGot: async () => {
-    
+  getScrappy: async () => {
+
     console.log("1");
-    var result = await ipcRenderer.invoke("doSomethingFetch");
-    result = JSON.parse(result[0]);
-    console.log(result);
-    resultTable = makeTable(result);
-    console.log(resultTable);
-    // makeStr(result[1]);
+    var result = await ipcRenderer.invoke("getScrappy");
+
+    let result0 = JSON.parse(result[0]);
+    let resultTable = makeTable(result0);
+    let resultStr = makeStr(result[1]);
+
     var whattodo = document.getElementById("whattodo");
     whattodo.innerHTML = resultTable;
+    whattodo.appendChild(resultStr);
+
+  },
+
+  getImg: async () => {
+    var result = await ipcRenderer.invoke("getImg");
+    console.log(result);
   }
 }
 
@@ -40,10 +47,8 @@ contextBridge.exposeInMainWorld("indexBridge", indexBridge);
 
 function makeTable(data) {
   let v = data;
-  console.log(v);
 
   try {
-
     for (i in v) {
       let len = v[i].length;
 
@@ -81,35 +86,25 @@ function makeTable(data) {
   }
 }
 
-function makeStr(data){
-  v = data;
-					v=v.replace(/\n/g, "\\n")
-						.replace(/\r/g, "\\r")
-						.replace(/\t/g, "\\t")
-						.replace(/&#34;/g, "\"")
-						.replace(/&#39;/g,"\'")
-						.replace(/&gt;/g, "\>")
-						.replace(/&lt;/g,"\<");
-						
-					parent = document.querySelector('#text');
-					fragment = document.createDocumentFragment();
+function makeStr(data) {
+  v = JSON.parse(data);
 
-					try{
-						let w = JSON.parse(v);
-
-						for(e in w) {
-							let p = document.createElement('p');
-							p.textContent = w[e];
-							fragment.append(p);
-						};
-						//console.log(v);
-					}
-					catch(error){
-						let p = document.createElement('p');
-						p.textContent = "fail to scrap";
-						fragment.append(p);
-						console.log(error);
-					}
-					
-					parent.append(fragment);
+  console.log(v);
+  try {
+    let d = document.createElement('div');
+    for (e in v) {
+      let p = document.createElement('p');
+      p.textContent = v[e];
+      d.appendChild(p)
+    };
+    //console.log(v);
+    return d;
+  }
+  catch (error) {
+    let fragment = document.createDocumentFragment();
+    let p = document.createElement('p');
+    p.textContent = "fail to scrap";
+    fragment.append(p);
+    console.log(error);
+  }
 }
