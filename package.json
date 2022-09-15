@@ -1,13 +1,20 @@
 {
-  "name": "electron-start",
+  "name": "freedocs",
   "version": "1.0.0",
-  "description": "Electron start",
+  "description": "FreeDocs",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
     "watch": "nodemon --exec electron .",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build:osx": "electron-builder --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "electron-builder --win portable --ia32",
+    "build:win64": "electron-builder --win portable --x64"
   },
   "repository": "",
   "keywords": [],

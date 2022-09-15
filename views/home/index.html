@@ -57,14 +57,14 @@
     <nav class="sidebar">
       <div class="tab">
         <ul class="tabnav">
-          <li><a href="#tab01">탭1</a></li>
-          <li><a href="#tab02">탭2</a></li>
+          <li><a href="#tab01">scrap</a></li>
+          <li><a href="#tab02">makeImg</a></li>
         </ul>
         <div class="tabcontent">
           <div id="tab01">
             <div id="change">
-              <input type="text" class="form-control" id="srcUrl" placeholder="type the url">
-              <button class="btn" id="callApi" onclick="getScrappy();">I am bored. What should I do?</button>
+              <input type="text" class="form-control" id="srcUrl" placeholder="enter the url">
+              <button class="btn" id="callApi" onclick="getScrappy();">scrap!</button>
             </div>
             <div id="whattodo">
             </div>
@@ -73,7 +73,7 @@
                   <!-- send description -->
             <div id="imgMake">
               <input type="text" id="description" placeholder="Enter description">
-              <button id="send" onclick="getImg();">Send</button>
+              <button class="btn" id="send" onclick="getImg();">make img!</button>
               <div>
                 <!-- rendering image from external server-->
                 <img id="image" alt="descripted image"> 

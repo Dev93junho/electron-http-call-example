@@ -13,8 +13,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
-    title: "Just a little tutorial",
-    icon: "assets/logo.png",
+    title: "FreeDocs",
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, "./preload.js"),
@@ -68,10 +67,11 @@ ipcMain.handle("getScrappy", async () => {
   const body = await response.json();
   return body;
 });
+
 ipcMain.handle("getImg", async () => {
   // custom url load from index.html
   
-  description = "oak"
+  description = "tree on the mountain"
   const response = await fetch("http://eec7-35-201-163-193.ngrok.io/getImg?description="+description);
   console.log("main img");
   const body = await response.json();
