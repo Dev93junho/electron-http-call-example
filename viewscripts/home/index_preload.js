@@ -16,7 +16,7 @@ let indexBridge = {
   // },
   getScrappy: async () => {
 
-    console.log("1");
+    console.log("getScrappy");
     var result = await ipcRenderer.invoke("getScrappy");
 
     let result0 = JSON.parse(result[0]);
@@ -28,11 +28,23 @@ let indexBridge = {
     whattodo.appendChild(resultStr);
 
   },
+  getImg: async () => {
+    
+    console.log("getImg");
+    var result = await ipcRenderer.invoke("getImg");
+
+    imgBin = result.img;
+    imgDsc = result.text;
+
+    var imgContainer = document.getElementById("image");
+    imgContainer.src = "data:image/png;base64," + imgBin;
+    imgContainer.alt = imgDsc;
+  },
 }
 
 ipcRenderer.on("gotData", (event, json) => {
 
-  console.log("2");
+  console.log("gotData");
   var whattodo = document.getElementById("whattodo");
   whattodo.innerText = JSON.parse(json);
 
@@ -84,7 +96,6 @@ function makeTable(data) {
 function makeStr(data) {
   v = JSON.parse(data);
 
-  console.log(v);
   try {
     let d = document.createElement('div');
     for (e in v) {
